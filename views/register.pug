@@ -1,0 +1,18 @@
+include includes/head
+
+h1 Sign up!
+
+form(action="/register", method="POST")
+    label(for="user[name]") Name: 
+    input(type="text", name="user[name]" placeholder="Name" required)
+    label(for="user[lastname]") Last name: 
+    input(type="text", name="user[lastname]" placeholder="Last name" required)
+    label(for="user[email]") Email: 
+    input(type="email", name="user[email]" placeholder="Email" required)
+    label(for="username") Username: 
+    input(type="text", name="username" placeholder="Username" required)
+    label(for="password") Password: 
+    input(type="password", name="password" placeholder="Password" required)
+    button Register
+
+include includes/footer

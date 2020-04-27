@@ -1,0 +1,9 @@
+include includes/head
+
+h1 This is the dashboard
+- let name = currentUser.name;
+- name = name.slice(0, 1).toUpperCase() + name.slice(1).toLowerCase();
+h2 Hello #{name}
+p Here you'll see the posts of the people you follow
+
+include includes/footer
