@@ -6,7 +6,13 @@ html
     body
         div.navbar
             a(href="/") Foodie
-            a(href="/login") Login
-            a(href="/register") Register
-            a(href="/logout") Logout
+
+            unless currentUser
+                a(href="/login") Login
+                a(href="/register") Register
+            else
+                a(href="#") Signed in as #{currentUser.name.slice(0, 1).toUpperCase() + currentUser.name.slice(1).toLowerCase()}
+                a(href="/logout") Logout
+                
+            
     div.main
