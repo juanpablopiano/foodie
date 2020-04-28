@@ -1,7 +1,8 @@
 # Things that I have to do
 - [x] add the middleware for user authentication
-- [ ] add profile pic
 - [ ] add the post routes
+- [ ] add the profile routes
+- [ ] add profile pic
 - [ ] add user editing route
 - [ ] add the comment routes
 - [ ] add the user show profile routes

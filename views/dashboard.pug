@@ -12,5 +12,17 @@ h1 This is the dashboard
 
 h2 Hello #{name}
 p Here you'll see the posts of the people you follow
+p
+    a(href="/post/new")
+        button new post
+#timeline
+    each post in posts
+        .post
+            p= post.author.username
+            - let img = post.image;
+            img(src=img width="300px")
+            p= post.description
+            hr
+
 
 include includes/footer

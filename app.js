@@ -10,7 +10,8 @@ const express = require('express'),
 
 /* Routing requires */
 const indexRoutes = require('./routes/index');
-
+const postRoutes = require('./routes/post');
+const profileRoutes = require('./routes/profile')
 
 /* Database connection */
 let db = process.env.MONGODB_URL;
@@ -46,7 +47,8 @@ app.use((req, res, next) => {
 
 /* Routing middleware */
 app.use(indexRoutes);
-
+app.use(postRoutes);
+app.use(profileRoutes);
 
 /* server port */
 let port = process.env.PORT;

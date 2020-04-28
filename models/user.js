@@ -9,16 +9,28 @@ const userSchema = new mongoose.Schema({
     name: String,
     lastname: String,
     avatar: String,
+    birthday: Date,
+    registerDate: {
+        type: Date,
+        default: Date.now
+    },
+    phoneNumber: String,
     following: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            username: String
         }
     ],
     followers: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            username: String
         }
     ],
     posts: [
@@ -41,8 +53,10 @@ const userSchema = new mongoose.Schema({
     ],
     shoppingList: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Ingredient',
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Ingredient'
+            },
             amount: Number,
             price: String
         }

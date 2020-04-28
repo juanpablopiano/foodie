@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Post = require('../models/post');
 const passport = require('passport');
 const middleware = require('../middleware');
 
@@ -23,7 +24,8 @@ router.post('/register', (req, res) => {
         name: req.body.user.name,
         lastname: req.body.user.lastname,
         email: req.body.user.email,
-        username: req.body.username
+        username: req.body.username,
+        registerDate: new Date()
     });
     let password = req.body.password;
 
@@ -57,13 +59,17 @@ router.get('/logout', (req, res) => {
 });
 
 /* Dashboard route */
+/* For now it'll be displaying all of the posts of everyone */
+/* Some time in the near future it'll filter chronologically the posts of the people you follow, and it'll an amout at a time */
 router.get('/dashboard', middleware.isLoggedIn, (req, res) => {
-    res.render('dashboard');
-});
 
-/* Profile viewer (show) */
-router.get('/u/:username', (req, res) => {
-    res.render('profile');
+    Post.find({}, (error, allPosts) => {
+        if (error) {
+            console.log(error);
+        } else {
+            res.render('dashboard', {posts: allPosts});
+        }
+    });
 });
 
 module.exports = router;
