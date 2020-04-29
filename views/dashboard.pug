@@ -18,9 +18,13 @@ p
 #timeline
     each post in posts
         .post
-            p= post.author.username
+            p
+                a(href="/u/" + post.author.username)
+                    strong= post.author.username
+                span  - #{post.postDate.toLocaleDateString()}
             - let img = post.image;
-            img(src=img width="300px")
+            a(href="/post/" + post._id)
+                img(src=img width="300px")
             p= post.description
             hr
 

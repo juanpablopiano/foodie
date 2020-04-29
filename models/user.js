@@ -8,7 +8,10 @@ const userSchema = new mongoose.Schema({
     password: String,
     name: String,
     lastname: String,
-    avatar: String,
+    avatar: {
+        type: String,
+        default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1KYdVbr_q9oPjjbBDx9se1reB9_DhUcpwwzGtkeLCSyp8v9dr&usqp=CAU',
+    },
     birthday: Date,
     registerDate: {
         type: Date,

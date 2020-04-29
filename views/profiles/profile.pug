@@ -1,6 +1,42 @@
 include ../includes/head
 
-h1 This is a profile page
-p Here you'll see the details of someone's account
+h1 Profile page of #{user.username}
+
+img(src=user.avatar width="100px")
+br
+if currentUser && user._id.equals(currentUser._id)
+    a(href=`/u/${user.username}/edit`)
+        button Edit profile
+if currentUser && !user._id.equals(currentUser._id)
+    if !following
+        form(action="/u/" + user.username + "/follow?_method=PUT", method="POST")
+            button.button follow
+    else
+        form(action="/u/" + user.username + "/unfollow?_method=PUT", method="POST")
+            button.button unfollow
+    
+
+#user-data
+    p
+        strong Followers: 
+        span= user.followers.length
+    p
+        strong Following: 
+        span= user.following.length
+    p
+        strong Posts: 
+        span= user.posts.length
+    p
+        strong Recipes: 
+        span= user.recipes
+
+#posts
+    each post in user.posts
+        .profile-post
+            a(href="/post/" + post._id)
+                img(src=post.image)
+            hr
+
+
 
 include ../includes/footer

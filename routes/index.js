@@ -9,7 +9,11 @@ const middleware = require('../middleware');
 
 /* Landing page */
 router.get('/', (req, res) => {
-    res.render('index');
+    if (req.isAuthenticated()) {
+        res.redirect('/dashboard');
+    } else {
+        res.render('index');
+    }
 });
 
 // =======================

@@ -1,0 +1,16 @@
+include ../includes/head
+
+h1 Show Post
+
+img(src=post.image)
+p
+    strong
+        a(href="/u/" + post.author.username)= post.author.username
+    span  - #{post.postDate.toLocaleDateString()}
+p= post.description
+
+hr
+br
+p Here would go the comments
+
+include ../includes/footer

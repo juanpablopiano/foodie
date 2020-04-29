@@ -24,14 +24,43 @@ router.post('/post', isLoggedIn, (req, res) => {
         image: req.body.image
     })
 
+    /* Create the post */
     Post.create(post, (error, newPost) => {
         if (error) {
             console.log(error);
+            /* If there's an error redirect to the dashboard (some error handling in the future) */
             res.redirect('/dashboard');
         } else {
-            res.redirect('/dashboard');
+
+            /* If post created, find an user to push it to the user.posts */
+            User.findById(req.user._id, (error, foundUser) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    /* Push the post to user and save */
+                    foundUser.posts.push(newPost);
+                    foundUser.save();
+
+                    /* Redirect to dashboard */
+                    res.redirect('/dashboard');
+                }
+            });
         }
-    })
+    });
+});
+
+/* Show post route */
+router.get('/post/:id', (req, res) => {
+    const id = req.params.id;
+
+    Post.findById(id, (error, foundPost) => {
+        if (error) {
+            console.log(error);
+            res.redirect('/');
+        } else {
+            res.render('posts/show', {post: foundPost});
+        }
+    });
 });
 
 module.exports = router;
