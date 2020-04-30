@@ -9,7 +9,7 @@ form(action="/u/" + user.username + '?_method=PUT', method="POST")
     //- for now, the username will not be available for editing
     input(type="email", name="user[email]" placeholder="Email", value=user.email required)
     input(type="text", name="user[avatar]" placeholder="Avatar", value=user.avatar)
-    input(type="tel", name="user[phoneNumber]" placeholder="Phone Number", value=user.phoneNumber)
+    input(type="tel", name="user[telephone]" placeholder="Phone Number", value=user.telephone)
     input(type="date", name="birthday" placeholder="Birthday", value=user.birthday)
     button Update
 

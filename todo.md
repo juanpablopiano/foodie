@@ -4,10 +4,12 @@
 - [x] add the profile routes (show, edit, delete)
 - [x] add profile pic (related to the previous)
 - [x] add user editing route (related to the previous)
-- [ ] add the comment database logic
-- [ ] add the comment routes (edit and delete too)
+- [x] add the comment database logic
+- [x] add the comment routes
 - [x] add the ability to follow users
-- [ ] add the ability to unfollow users
+- [x] add the ability to unfollow users
+- [ ] add the edit and delete comment routes
+- [ ] Refactor the previous DB callbacks so they use async functions and it looks better and doesn't have that much callback hell
 - [ ] display your followings posts on dashboard (I added a display logic in the dashboard although it shows everything)
 - [ ] add middleware (user authorization) for updating and deleting posts
 - [ ] add recipe routes and api
@@ -18,3 +20,5 @@
 
 - [ ] add vue functionality
 - [ ] improve front with vue and css (learn vue)
+
+# Bugs and errors to fix... (Not yet)

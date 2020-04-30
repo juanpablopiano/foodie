@@ -1,0 +1,10 @@
+include ../includes/head
+
+h1 WELCOME TO TEST
+
+each user in users
+    h1= user.username
+    a(href='/profiles/' + user.username)
+        img(src=user.avatar)
+
+include ../includes/footer

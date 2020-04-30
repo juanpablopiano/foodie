@@ -12,12 +12,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1KYdVbr_q9oPjjbBDx9se1reB9_DhUcpwwzGtkeLCSyp8v9dr&usqp=CAU',
     },
+    telephone: String,
     birthday: Date,
     registerDate: {
         type: Date,
         default: Date.now
     },
-    phoneNumber: String,
     following: [
         {
             id: {

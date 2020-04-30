@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
         name: req.body.user.name,
         lastname: req.body.user.lastname,
         email: req.body.user.email,
-        username: req.body.username,
+        username: req.body.username.toLowerCase(),
         registerDate: new Date()
     });
     let password = req.body.password;

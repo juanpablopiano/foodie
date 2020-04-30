@@ -9,8 +9,22 @@ p
     span  - #{post.postDate.toLocaleDateString()}
 p= post.description
 
+if currentUser
+    hr
+    br
+    form(action="/post/" + post.id + "/comments", method="POST")
+        input(type="text", name="text" required)
+        button Comment
 hr
 br
 p Here would go the comments
+
+each comment in post.comments
+    .comment
+        p
+            strong
+                a(href="/u/" + post.author.username)= comment.author.username
+        p= comment.text
+        p= comment.date.toLocaleString()
 
 include ../includes/footer

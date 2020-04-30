@@ -4,25 +4,24 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const Post = require('../models/post');
-const passport = require('passport');
 const middleware = require('../middleware');
-const { isLoggedIn } = require('../middleware');
 
-/* In here i'll call the Posts people will make on the app with an uppercase P. The post http method will have a lowercase p */
-/* Create new 'Post' route */
-router.get('/post/new', isLoggedIn, (req, res) => {
+/* In here i'll call the posts people will make on the app with an lowercase P. The POST http method will be all in uppercase */
+/* Create new 'post' route */
+router.get('/post/new', middleware.isLoggedIn, (req, res) => {
     res.render('posts/new');
 });
 
-router.post('/post', isLoggedIn, (req, res) => {
-    let post = new Post({
+/* POST the new post */
+router.post('/post', middleware.isLoggedIn, (req, res) => {
+    const post = new Post({
         author: {
             id: req.user._id,
             username: req.user.username
         },
         description: req.body.description,
         image: req.body.image
-    })
+    });
 
     /* Create the post */
     Post.create(post, (error, newPost) => {
@@ -53,7 +52,7 @@ router.post('/post', isLoggedIn, (req, res) => {
 router.get('/post/:id', (req, res) => {
     const id = req.params.id;
 
-    Post.findById(id, (error, foundPost) => {
+    Post.findById(id).populate('comments').exec((error, foundPost) => {
         if (error) {
             console.log(error);
             res.redirect('/');
