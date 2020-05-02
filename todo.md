@@ -10,7 +10,7 @@
 - [x] add the ability to unfollow users
 - [ ] add the edit and delete comment routes
 - [ ] Refactor the previous DB callbacks so they use async functions and it looks better and doesn't have that much callback hell
-- [ ] display only posts of followings.... (couldn't do this one.... )
+- [x] display only posts of followings.... (couldn't do this one.... ) -------> I FUCKING DID IT
 - [ ] add middleware (user authorization) for updating and deleting posts
 - [ ] add recipe routes and api
 - [ ] add ingredients database and api or something

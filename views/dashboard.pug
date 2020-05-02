@@ -18,7 +18,7 @@ p
     a(href="/post/new")
         button new post
 #timeline
-    each post in posts.reverse()
+    each post in posts
         .post
             p
                 a(href="/u/" + post.author.username)

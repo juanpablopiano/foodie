@@ -66,14 +66,32 @@ router.get('/logout', (req, res) => {
 /* For now it'll be displaying all of the posts of everyone */
 /* Some time in the near future it'll filter chronologically the posts of the people you follow, and it'll an amout at a time */
 router.get('/dashboard', middleware.isLoggedIn, (req, res) => {
-    Post.find({}, (error, allPosts) => {
+    const following = req.user.following;
+    Post.find({}).
+    then(allPosts => {
+        const p = [];
+        let a = [];
+
+        following.forEach(user => {
+            a = allPosts.filter(posts => posts.author.username === user.username);
+            p.push(...a);
+        });
+        a = allPosts.filter(posts => posts.author.username === req.user.username);
+        p.push(...a);
+
+        a = p.sort((a, b) => b.postDate - a.postDate);
+        return p;
+    }).
+    then(p => res.render('dashboard', {posts: p}));
+
+    /* Post.find({}, (error, allPosts) => {
         if (error) {
             console.log(error);
         } else {
             
             res.render('dashboard', {posts: allPosts});
         }
-    });
+    }); */
 });
 
 module.exports = router;
