@@ -66,11 +66,11 @@ router.get('/logout', (req, res) => {
 /* For now it'll be displaying all of the posts of everyone */
 /* Some time in the near future it'll filter chronologically the posts of the people you follow, and it'll an amout at a time */
 router.get('/dashboard', middleware.isLoggedIn, (req, res) => {
-
     Post.find({}, (error, allPosts) => {
         if (error) {
             console.log(error);
         } else {
+            
             res.render('dashboard', {posts: allPosts});
         }
     });
