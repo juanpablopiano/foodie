@@ -8,30 +8,41 @@ middlewareObj.isLoggedIn = (req, res, next) => {
     }
 
     res.redirect('/login');
-}
+};
 
-/*
-middlewareObj.checkCampgroundOwnership = (req, res, next) => {
+middlewareObj.checkPostOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {
-        Campground.findById(req.params.id, (err, foundCampground) => {
-            if (err) {
-                req.flash("error", "Campground not found");
-                res.redirect('back');
+        Post.findById(req.params.id).
+        then(foundPost => {
+            if (foundPost.author.id.equals(req.user._id)) {
+                 return next();
             } else {
-                // does the user own the campground?
-                if (foundCampground.author.id.equals(req.user._id)) {
-                    next();
-                } else {
-                    req.flash("error", "You don't have permission to do that");
-                    res.redirect('back');
-                }
+                return res.redirect('back');
             }
         });
     } else {
-        req.flash('error', "You need to be logged in to do that!")
-        res.redirect('back');
+        return res.redirect('back');
     }
+};
+
+middlewareObj.checkFollowing = (req, res, next) => {
+
+    if (req.isAuthenticated()) {
+        User.findOne({username: req.params.username}).
+        then(foundUser => {
+            let following = foundUser.followers.filter(e => e.username === req.user.username);
+            following = following.length === 0 ? false : true;
+
+            if (!following) {
+                return next();
+            } else {
+                return res.redirect('back');
+            }
+        })
+    } else {
+        return res.redirect('/login');
+    }
+    
 }
-*/
 
 module.exports = middlewareObj;

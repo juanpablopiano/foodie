@@ -7,8 +7,7 @@ const middleware = require('../middleware');
 
 /* Profile viewer (show) */
 router.get('/u/:username', (req, res) => {
-    let user = req.params.username.toLocaleLowerCase().toLocaleLowerCase();
-    
+    const user = req.params.username;
     User.findOne({username: user}).populate('posts').exec((error, foundUser) => {
         if (error) {
             console.log(error);
@@ -63,40 +62,29 @@ router.put('/u/:username', (req, res) => {
 });
 
 /* Follow implementation */
-router.put('/u/:username/follow', (req, res) => {
-    /* Creates a follower object based on the current  */
+router.put('/u/:username/follow', middleware.checkFollowing, (req, res) => {
+
     const follower = {
         id: req.user._id,
         username: req.user.username
     };
-    /* Finds the profile of the user currently visited */
-    User.findOne({username: req.params.username.toLocaleLowerCase()}, (error, foundUser) => {
-        if (error) {
-            console.log(error);
-            res.redirect('back');
-        } else {
-            /* Checks whether you're following the user. Probably will do with middleware */
-            let following = foundUser.followers.filter(e => e.username == req.user.username);
-            following = following.length === 0 ? false : true;
 
-            if (!following) {
-                /* If not following, update the visited profile followers */
-                foundUser.followers.push(follower);
-                foundUser.save();
+    User.findOne({username: req.params.username}).
+    then(foundUser => {
+        foundUser.followers.push(follower);
+        foundUser.save();
 
-                /* Then update the current user followings */
-                User.findById(follower.id, (error, currUser) => {
-
-                    currUser.following.push({
-                        id: foundUser._id,
-                        username: foundUser.username
-                    });
-                    currUser.save();
-                });
-            }
-
-            res.redirect(`/u/${req.params.username}`);
-        }
+        User.findById(follower.id).
+        then(currentUser => {
+            currentUser.following.push({
+                id: foundUser._id,
+                username: foundUser.username
+            });
+            currentUser.save().
+            then(() => {
+                res.redirect(`/u/${req.params.username}`);
+            });
+        });
     });
 });
 
@@ -130,30 +118,24 @@ router.put('/u/:username/unfollow', (req, res) => {
 });
 
 /* Some testing grounds to get to know better the mongoose handling */
-router.get('/profiles/:username', (req, res) => {
-    const username = req.params.username;
-    async function getUser(username) {
-        const user = await User.findOne({username: username});
-        return(user);
-    }
-
-    getUser(username)
-    .then(foundUser => {
-        res.render('profiles/test2', {user: foundUser});
+router.get('/profiles/', (req, res) => {
+    User.find({}).
+    then(foundUsers => {
+        res.render('profiles/test', {users: foundUsers});
     });
 });
 
-router.get('/profiles/', (req, res) => {
+router.get('/profiles/:username', (req, res) => {
+    const username = req.params.username;
 
-    async function getUser() {
-        const users = await User.find({});
-        return(users);
-    }
+    User.findOne({username: username}).
+    populate('posts').
+    then(user => res.render('profiles/test2', {user: user}));
 
-    getUser()
-    .then(foundUsers => {
-        res.render('profiles/test', {users: foundUsers});
-    });
+    /* User.findOne({username: username}).
+    then(foundUser => {
+        res.render('profiles/test2', {user: foundUser});
+    }); */
 });
 
 module.exports = router;

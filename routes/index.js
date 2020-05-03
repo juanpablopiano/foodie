@@ -83,15 +83,6 @@ router.get('/dashboard', middleware.isLoggedIn, (req, res) => {
         return p;
     }).
     then(p => res.render('dashboard', {posts: p}));
-
-    /* Post.find({}, (error, allPosts) => {
-        if (error) {
-            console.log(error);
-        } else {
-            
-            res.render('dashboard', {posts: allPosts});
-        }
-    }); */
 });
 
 module.exports = router;
