@@ -6,7 +6,8 @@ const express = require('express'),
       passport = require('passport'),
       localStrategy = require('passport-local'),
       methodOverride = require('method-override'),
-      User = require('./models/user')
+      User = require('./models/user'),
+      path = require('path');
 
 /* Routing requires */
 const indexRoutes = require('./routes/index');

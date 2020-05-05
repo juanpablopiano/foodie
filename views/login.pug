@@ -1,12 +1,18 @@
 include includes/head
+.container
+    .header
+        h1 Log in!
 
-h1 Log in!
-
-form(action="/login", method="POST")
-    label(for="username") Username: 
-    input(type="text", name="username" placeholder="Username" required)
-    label(for="password") Password: 
-    input(type="password", name="password" placeholder="Password" required)
-    button Login
+    .row
+        .form
+            form#login-form(action="/login", method="POST")
+                .form-group
+                    label(for="username") Username: 
+                    input.form-control(type="text", name="username" placeholder="Username" aria-describedby="emailHelp" required)
+                    small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+                .form-group
+                    label(for="password") Password: 
+                    input.form-control(type="password", name="password" placeholder="Password" required)
+                button.btn.btn-primary Login
 
 include includes/footer

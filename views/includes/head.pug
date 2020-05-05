@@ -5,14 +5,14 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Foodie
-        //-style
+        style
             include ../../public/stylesheets/style.css
         link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous")
     body
         .navbar.navbar-dark.bg-primary.navbar-expand-lg
             a.navbar-brand(href="/")
-                img(src="/public/f.svg", width="30", height="30")
-                span Foodie
+                img(src="f.svg", width="30", height="30")
+                span  Foodie
                 
             .collapse.navbar-collapse
                 ul.navbar-nav.mr-auto
@@ -26,3 +26,4 @@ html(lang="en")
                             a.nav-link(href="/u/" + currentUser.username) Signed in as #{currentUser.name.slice(0, 1).toUpperCase() + currentUser.name.slice(1).toLowerCase()}
                         li.nav-item
                             a.nav-link(href="/logout") Logout
+        main
