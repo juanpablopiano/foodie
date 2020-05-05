@@ -1,21 +1,28 @@
 doctype html
-html
+html(lang="en")
     head
-        title Foodie.nom
-        style
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Foodie
+        //-style
             include ../../public/stylesheets/style.css
-        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/css/foundation-float.min.css")
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous")
     body
-        div.navbar
-            a(href="/") Foodie
-
-            unless currentUser
-                a(href="/login") Login
-                a(href="/register") Register
-            else
-                a(href="#") Signed in as #{currentUser.name.slice(0, 1).toUpperCase() + currentUser.name.slice(1).toLowerCase()}
-                a(href="/u/" + currentUser.username) My profile
-                a(href="/logout") Logout
+        .navbar.navbar-dark.bg-primary.navbar-expand-lg
+            a.navbar-brand(href="/")
+                img(src="/public/f.svg", width="30", height="30")
+                span Foodie
                 
-            
-        div.main
+            .collapse.navbar-collapse
+                ul.navbar-nav.mr-auto
+                    unless currentUser
+                        li.nav-item.active
+                            a.nav-link(href="/login") Login
+                        li.nav-item
+                            a.nav-link(href="/register") Register
+                    else
+                        li.nav-item.active
+                            a.nav-link(href="/u/" + currentUser.username) Signed in as #{currentUser.name.slice(0, 1).toUpperCase() + currentUser.name.slice(1).toLowerCase()}
+                        li.nav-item
+                            a.nav-link(href="/logout") Logout

@@ -10,6 +10,14 @@ middlewareObj.isLoggedIn = (req, res, next) => {
     res.redirect('/login');
 };
 
+middlewareObj.loginRedirect = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.redirect('/');
+    }
+
+    return next();
+}
+
 middlewareObj.checkPostOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {
         Post.findById(req.params.id).

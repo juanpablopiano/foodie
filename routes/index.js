@@ -20,10 +20,10 @@ router.get('/', (req, res) => {
 // AUTH ROUTES
 // =======================
 /* Register routes */
-router.get('/register', (req, res) => {
+router.get('/register', middleware.loginRedirect, (req, res) => {
     res.render('register');
 });
-router.post('/register', (req, res) => {
+router.post('/register', middleware.loginRedirect, (req, res) => {
     let newUser = new User({
         name: req.body.user.name,
         lastname: req.body.user.lastname,
@@ -46,10 +46,10 @@ router.post('/register', (req, res) => {
 });
 
 /* Login routes */
-router.get('/login', (req, res) => {
+router.get('/login', middleware.loginRedirect, (req, res) => {
     res.render('login');
 });
-router.post('/login', (req, res) => {
+router.post('/login', middleware.loginRedirect, (req, res) => {
     passport.authenticate("local", {
         successRedirect: "/dashboard",
         failureRedirect: "/login"
@@ -58,6 +58,7 @@ router.post('/login', (req, res) => {
 
 /* Logout route */
 router.get('/logout', (req, res) => {
+    
     req.logout();
     res.redirect('/');
 });
