@@ -22,3 +22,10 @@
 - [ ] improve front with vue and css (learn vue)
 
 # Bugs and errors to fix... (Not yet)
+
+## UI
+- [ ] Center the content of the footer
+- [ ] Keep the footer at the bottom
+- [ ] Finish styling the other pages
+- [ ] Fix the images in nested pug files
+- [ ] 
