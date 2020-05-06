@@ -24,8 +24,8 @@
 # Bugs and errors to fix... (Not yet)
 
 ## UI
-- [ ] Center the content of the footer
-- [ ] Keep the footer at the bottom
-- [ ] Finish styling the other pages
+- [x] Center the content of the footer
+- [x] Keep the footer at the bottom (sort of... still need some improvement)
+- [ ] Finish styling the other pages (on the way)
 - [ ] Fix the images in nested pug files
 - [ ] 

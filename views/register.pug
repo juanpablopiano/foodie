@@ -1,18 +1,44 @@
 include includes/head
 
-h1 Sign up!
-
-form(action="/register", method="POST")
-    label(for="user[name]") Name: 
-    input(type="text", name="user[name]" placeholder="Name" required)
-    label(for="user[lastname]") Last name: 
-    input(type="text", name="user[lastname]" placeholder="Last name" required)
-    label(for="user[email]") Email: 
-    input(type="email", name="user[email]" placeholder="Email" required)
-    label(for="username") Username: 
-    input(type="text", name="username" placeholder="Username" required)
-    label(for="password") Password: 
-    input(type="password", name="password" placeholder="Password" required)
-    button Register
+.container
+    .row
+        //- Default form register
+        form#register-form.text-center.border.border-light.p-5(action="/register" method="POST")
+            p.h4.mb-4 Register
+            .form-row.mb-4
+                .col
+                    //- First name
+                    input#defaultRegisterFormFirstName.form-control(type="text" name="user[firstname]" placeholder="First Name" required)
+                .col
+                    //- Last name
+                    input#defaultRegisterFormLastName.form-control(type="text" name="user[lastname]" placeholder="Last name" required)
+            //- E-mail
+            input#defaultRegisterFormEmail.form-control.mb-4(type="email" name="user[email]" placeholder="Email" required)
+            //- Username
+            input#defaultRegisterFormEmail.form-control.mb-4(type="text" name="username" placeholder="Username" required)
+            //- Password
+            input#defaultRegisterFormPassword.form-control(type="password" name="password" placeholder="Password" aria-describedby='defaultRegisterFormPasswordHelpBlock' required)
+            small#defaultRegisterFormPasswordHelpBlock.form-text.text-muted.mb-4
+                | At least 8 characters and 1 digit
+            //- Sign up button
+            button.btn.btn-info.my-4.btn-block(type='submit') Register
+            //- Social register
+            p or sign up with:
+            a.mx-2(href='#' role='button')
+                i.fab.fa-facebook-f.light-blue-text
+            a.mx-2(href='#' role='button')
+                i.fab.fa-twitter.light-blue-text
+            a.mx-2(href='#' role='button')
+                i.fab.fa-linkedin-in.light-blue-text
+            a.mx-2(href='#' role='button')
+                i.fab.fa-github.light-blue-text
+            hr
+            //- Terms of service
+            p
+                | By clicking 
+                em Sign up 
+                |  you agree to our 
+                a(href='#') terms of service
+        //- Default form register
 
 include includes/footer

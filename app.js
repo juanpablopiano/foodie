@@ -26,7 +26,7 @@ mongoose.connect(db, dbObject);
 /* Configuration and middleware */
 app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(`${__dirname}/public`));
+app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(methodOverride('_method'));
 
 /* Passport configuration */

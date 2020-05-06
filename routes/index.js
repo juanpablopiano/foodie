@@ -25,7 +25,7 @@ router.get('/register', middleware.loginRedirect, (req, res) => {
 });
 router.post('/register', middleware.loginRedirect, (req, res) => {
     let newUser = new User({
-        name: req.body.user.name,
+        firstname: req.body.user.firstname,
         lastname: req.body.user.lastname,
         email: req.body.user.email,
         username: req.body.username.toLowerCase(),

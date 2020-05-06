@@ -3,7 +3,7 @@ include ../includes/head
 h1 Edit profile of #{user.username}
 
 form(action="/u/" + user.username + '?_method=PUT', method="POST")
-    input(type="text", name="user[name]" placeholder="First Name", value = user.name required)
+    input(type="text", name="user[firstname]" placeholder="First Name", value = user.firstname required)
     input(type="text", name="user[lastname]" placeholder="Last Name", value=user.lastname)
     //- input(type="text", name="user[username]" placeholder="Username", value=user.username required)
     //- for now, the username will not be available for editing
