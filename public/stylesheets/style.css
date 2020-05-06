@@ -1,23 +1,22 @@
 html {
     position: relative;
     min-height: 100%;
+    padding-bottom: 3rem;
 }
 
-
 .main {
-    overflow: auto;
     min-height: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 3rem;
 }
 
 footer {
-    margin-top: 20px;
     position: absolute;
     width: 100%;
 }
 
 #login-form, #register-form {
     margin: 0 auto;
+    margin-bottom: 4rem;
     width: 35%;
 }
 
