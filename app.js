@@ -16,12 +16,8 @@ const profileRoutes = require('./routes/profile')
 const commentRoutes = require('./routes/comment')
 
 /* Database connection */
-let db = process.env.MONGODB_URL;
 const dbObject = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false};
-if (db == null || db == "") {
-    db = 'mongodb://localhost:27017/foodie';
-}
-mongoose.connect(db, dbObject);
+mongoose.connect(process.env.MONGODB_URL, dbObject);
 
 /* Configuration and middleware */
 app.set('view engine', 'pug');
@@ -55,10 +51,6 @@ app.use(profileRoutes);
 app.use(commentRoutes);
 
 /* server port */
-let port = process.env.PORT;
-if (port == null || port == "") {
-    port = 8080;
-}
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
     console.log('The app is listening.')
 });

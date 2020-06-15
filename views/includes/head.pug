@@ -5,6 +5,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Foodie
+        link(rel="shortcut icon", href=`${process.env.WEBSITE}/static/favicon.ico`, type="image/x-icon")
         link(rel="stylesheet", href="stylesheets/style.css")
         link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.8.2/css/all.css")
         link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap")
@@ -14,7 +15,7 @@ html(lang="en")
         header.header
             nav.navbar.navbar-expand-md.sticky-top.navbar-dark.indigo
                 a.navbar-brand(href="/")
-                    img(src="./static/f.svg", width="30", height="30")
+                    img(src=`${process.env.WEBSITE}/static/f.svg`, width="30", height="30")
                     span  Foodie
                 
                 .collapse.navbar-collapse
@@ -29,4 +30,3 @@ html(lang="en")
                                 a.nav-link(href="/u/" + currentUser.username) Signed in as #{currentUser.firstname.slice(0, 1).toUpperCase() + currentUser.firstname.slice(1).toLowerCase()}
                             li.nav-item
                                 a.nav-link(href="/logout") Logout
-        main.main

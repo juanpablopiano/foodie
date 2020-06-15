@@ -1,7 +1,65 @@
-include includes/head
-.container
+include includes/landingHeader
 
-    h1 Welcome to foodie.nom
-    p In here you can post pics of the food you cook and share it with everybody
+// Features
+section#features
+    .row
+        .feature-box.col-lg-4
+            i.icon.fas.fa-utensils.fa-4x
+            h3 Recipes
+            p Share your recipe with everyone and see everyone's recipes
+        .feature-box.col-lg-4
+            i.icon.fas.fa-clipboard-list.fa-4x
+            h3 Shopping List
+            p Make a shopping list with ingredients and keep a groceries budget
+        .feature-box.col-lg-4
+            i.icon.fas.fa-heart.fa-4x
+            h3 Share everywhere
+            p Find the love of your dog&apos;s life or your money back.
+// Testimonials
+section#testimonials
+    #testimonial-carousel.carousel.slide(data-ride='false')
+        .carousel-inner
+            .carousel-item.active
+                h2.testimonial-text
+                    | I love this app. I can show the world how good of a cook I am now and share my recipes.
+                img.testimonial-image(src='images/man-img.jpg' alt='bob-profile')
+                em Bob, New York
+            .carousel-item
+                h2.testimonial-text
+                    | This app is the best. I can follow the recipes of my favorite cheffs and try to replicate them at home now
+                img.testimonial-image(src='images/lady-img.jpg' alt='lady-profile')
+                em Maggie, Chicago
+        a.carousel-control-prev(href='#testimonial-carousel' role='button' data-slide='prev')
+            span.carousel-control-prev-icon(aria-hidden='true')
+            span.sr-only Previous
+        a.carousel-control-next(href='#testimonial-carousel' role='button' data-slide='next')
+            span.carousel-control-next-icon(aria-hidden='true')
+            span.sr-only Next
+// Press
+section#press
+    img.press-log(src='images/techcrunch.png' alt='tc-logo')
+    img.press-log(src='images/tnw.png' alt='tnw-logo')
+    img.press-log(src='images/bizinsider.png' alt='biz-insider-logo')
+    img.press-log(src='images/mashable.png' alt='mashable-logo')
 
-include includes/footer
+// Call to Action
+section#cta
+    h3.cta-heading Share your food with everyone Today
+    button.download-button.btn.btn-lg.btn-dark(type='button')
+        i.fab.fa-apple
+        | Download
+    button.download-button.btn.btn-lg.btn-light(type='button')
+        i.fab.fa-google-play
+        | Download
+// Footer
+footer#footer
+    i.social-icon.fab.fa-facebook-f
+    i.social-icon.fab.fa-twitter
+    i.social-icon.fab.fa-instagram
+    i.social-icon.fas.fa-envelope
+    p &copy; Copyright 2020 foodie.nom
+
+// Bootstrap Scripts
+script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI' crossorigin='anonymous')
